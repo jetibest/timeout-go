@@ -179,6 +179,9 @@ parsed:
 
 	// Start command in a new process group.
 	cmd := exec.Command(args[0], args[1:]...)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Setpgid: true,
 	}
